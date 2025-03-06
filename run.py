@@ -9,7 +9,7 @@ import sys
 import torch
 
 try:
-    from .correlation import correlation # the custom cost volume layer
+    from correlation.correlation import FunctionCorrelation # the custom cost volume layer
 except:
     sys.path.insert(0, './correlation'); import correlation # you should consider upgrading python
 # end
