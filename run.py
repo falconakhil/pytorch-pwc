@@ -26,6 +26,7 @@ args_strModel = 'default' # 'default', or 'chairs-things'
 args_strOne = './images/one.png'
 args_strTwo = './images/two.png'
 args_strOut = './out.flo'
+args_imgSize=(128,128)
 
 for strOption, strArg in getopt.getopt(sys.argv[1:], '', [
     'model=',
@@ -314,8 +315,8 @@ def estimate(tenOne, tenTwo):
 ##########################################################
 
 if __name__ == '__main__':
-    tenOne = torch.FloatTensor(numpy.ascontiguousarray(numpy.array(PIL.Image.open(args_strOne))[:, :, ::-1].transpose(2, 0, 1).astype(numpy.float32) * (1.0 / 255.0)))
-    tenTwo = torch.FloatTensor(numpy.ascontiguousarray(numpy.array(PIL.Image.open(args_strTwo))[:, :, ::-1].transpose(2, 0, 1).astype(numpy.float32) * (1.0 / 255.0)))
+    tenOne = torch.FloatTensor(numpy.ascontiguousarray(numpy.array(PIL.Image.open(args_strOne)).resize(args_imgSize)[:, :, ::-1].transpose(2, 0, 1).astype(numpy.float32) * (1.0 / 255.0)))
+    tenTwo = torch.FloatTensor(numpy.ascontiguousarray(numpy.array(PIL.Image.open(args_strTwo)).resize(args_imgSize)[:, :, ::-1].transpose(2, 0, 1).astype(numpy.float32) * (1.0 / 255.0)))
 
     tenOutput = estimate(tenOne, tenTwo)
 
