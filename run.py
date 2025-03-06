@@ -315,8 +315,8 @@ def estimate(tenOne, tenTwo):
 ##########################################################
 
 if __name__ == '__main__':
-    tenOne = torch.FloatTensor(numpy.ascontiguousarray(numpy.array(PIL.Image.open(args_strOne)).resize(args_imgSize)[:, :, ::-1].transpose(2, 0, 1).astype(numpy.float32) * (1.0 / 255.0)))
-    tenTwo = torch.FloatTensor(numpy.ascontiguousarray(numpy.array(PIL.Image.open(args_strTwo)).resize(args_imgSize)[:, :, ::-1].transpose(2, 0, 1).astype(numpy.float32) * (1.0 / 255.0)))
+    tenOne = torch.FloatTensor(numpy.ascontiguousarray(numpy.array((PIL.Image.open(args_strOne)).resize(args_imgSize))[:, :, ::-1].transpose(2, 0, 1).astype(numpy.float32) * (1.0 / 255.0)))
+    tenTwo = torch.FloatTensor(numpy.ascontiguousarray(numpy.array((PIL.Image.open(args_strTwo)).resize(args_imgSize))[:, :, ::-1].transpose(2, 0, 1).astype(numpy.float32) * (1.0 / 255.0)))
 
     tenOutput = estimate(tenOne, tenTwo)
 
