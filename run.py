@@ -192,7 +192,7 @@ class Network(torch.nn.Module):
                     tenFlow = None
                     tenFeat = None
 
-                    tenVolume = torch.nn.functional.leaky_relu(input=correlation.FunctionCorrelation(tenOne=tenOne, tenTwo=tenTwo), negative_slope=0.1, inplace=False)
+                    tenVolume = torch.nn.functional.leaky_relu(input=FunctionCorrelation(tenOne=tenOne, tenTwo=tenTwo), negative_slope=0.1, inplace=False)
 
                     tenFeat = torch.cat([ tenVolume ], 1)
 
@@ -200,7 +200,7 @@ class Network(torch.nn.Module):
                     tenFlow = self.netUpflow(objPrevious['tenFlow'])
                     tenFeat = self.netUpfeat(objPrevious['tenFeat'])
 
-                    tenVolume = torch.nn.functional.leaky_relu(input=correlation.FunctionCorrelation(tenOne=tenOne, tenTwo=backwarp(tenInput=tenTwo, tenFlow=tenFlow * self.fltBackwarp)), negative_slope=0.1, inplace=False)
+                    tenVolume = torch.nn.functional.leaky_relu(input=FunctionCorrelation(tenOne=tenOne, tenTwo=backwarp(tenInput=tenTwo, tenFlow=tenFlow * self.fltBackwarp)), negative_slope=0.1, inplace=False)
 
                     tenFeat = torch.cat([ tenVolume, tenOne, tenFlow, tenFeat ], 1)
 
